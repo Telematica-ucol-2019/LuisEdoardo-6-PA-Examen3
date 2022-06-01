@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Examen3PA.Models"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             x:Name="this"
+             x:Class="Examen3PA.Views.Principal">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Libros" TextColor="White" 
+                   HorizontalOptions="FillAndExpand"/>
+            <Label Text="Add" 
+                   TextColor="White"
+                   FontSize="Large"
+                   Margin="0,0,15,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding cmdAgregaVehiculo}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*" ColumnDefinitions="*">
+            <CollectionView ItemsSource="{Binding Vehiculos}" 
+                            BackgroundColor="White"
+                            Margin="5,5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Vehiculo">
+                        <Grid RowDefinitions="auto,auto" ColumnDefinitions="100.,*">
+                            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                <Label >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Marca" FontAttributes="Bold"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{Binding Marca}"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="Modelo" FontAttributes="Bold"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{Binding Modelo}" />
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="Año" FontAttributes="Bold"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{Binding Año}" />
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="1" Color="LightGray"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
